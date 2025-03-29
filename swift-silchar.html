@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/img/deliver-icon-6.jpg"/>
+    <title>Swift Silchar - Premium Same-Day Delivery</title>
+    <style>
+        :root {
+            --primary: #2e4057;
+            --accent: #ff6b6b;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #48a868;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+        
+        .hero {
+            padding: 180px 0 100px;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://i0.wp.com/thelandofwanderlust.com/wp-content/uploads/2024/03/IMG_9669.jpeg') center/cover no-repeat;
+            color: white;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #ff5252;
+        }
+        
+        .features {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 60px;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background-color: var(--light);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 40px;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+        
+        .how-it-works {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+        
+        .steps {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .step {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .step-number {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+        
+        .step h3 {
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+        
+        .pricing {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .pricing-plans {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .pricing-plan {
+            flex: 1;
+            min-width: 300px;
+            max-width: 350px;
+            background-color: var(--light);
+            padding: 40px 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        
+        .pricing-plan.featured {
+            border: 2px solid var(--accent);
+            transform: scale(1.05);
+        }
+        
+        .plan-name {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .plan-price {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .plan-price span {
+            font-size: 16px;
+            font-weight: normal;
+        }
+        
+        .plan-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .plan-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .testimonials {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .testimonial-content {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+            background-color: #ddd;overflow: hidden;
+        }
+
+        .author-img img {
+            width: 100%;
+        }
+        
+        .author-info h4 {
+            margin: 0;
+            font-size: 18px;
+        }
+        
+        .author-info p {
+            margin: 0;
+            color: #666;
+        }
+        
+        .cta {
+            padding: 100px 0;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://sasban.online/sasban.jpg') center/cover no-repeat;
+            color: white;
+            text-align: center;
+        }
+        
+        .cta h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 50px 0;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+        
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent);
+        }
+        
+        .copyright {
+            margin-top: 30px;
+            text-align: center;
+            color: #ccc;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            nav ul {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">Swift<span>Silchar</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Premium Same-Day Delivery in Silchar</h1>
+            <p>Get your essential items delivered within hours from anywhere in Silchar. Quick, reliable, and exclusive service for premium households.</p>
+            <a href="#contact" class="btn">Book Your Delivery</a>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose Us</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Super Fast Delivery</h3>
+                    <p>Get your items delivered within hours, not days. Our exclusive service ensures your items reach you the same day.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Safe & Secure</h3>
+                    <p>Professionally handled packages with extra care. Your items are insured during transit for complete peace of mind.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📍</div>
+                    <h3>Local Coverage</h3>
+                    <p>We serve all premium neighborhoods in Silchar with deliveries from stores and services within 5km of your location.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Place Your Order</h3>
+                    <p>Use our app or website to place your order. Select the pickup location and your desired delivery time.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>We Pick It Up</h3>
+                    <p>Our delivery partner will collect your items from the store, restaurant, or service within Silchar.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Fast Delivery</h3>
+                    <p>Track your delivery in real-time as we bring it to your doorstep within the promised time window.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2 class="section-title">Simple Pricing</h2>
+            <div class="pricing-plans">
+                <div class="pricing-plan">
+                    <div class="plan-name">Basic</div>
+                    <div class="plan-price">₹99<span>/delivery</span></div>
+                    <ul class="plan-features">
+                        <li>Same-day delivery</li>
+                        <li>Up to 1kg package weight</li>
+                        <li>Within 5km radius</li>
+                        <li>Standard tracking</li>
+                        <li>Pay-as-you-go</li>
+                    </ul>
+                    <a href="#contact" class="btn">Join Now</a>
+                </div>
+                <div class="pricing-plan featured">
+                    <div class="plan-name">Premium</div>
+                    <div class="plan-price">₹799<span>/month</span></div>
+                    <ul class="plan-features">
+                        <li>10 deliveries per month</li>
+                        <li>Up to 1kg package weight</li>
+                        <li>Within 5km radius</li>
+                        <li>Priority delivery</li>
+                        <li>Real-time tracking</li>
+                        <li>Dedicated support</li>
+                    </ul>
+                    <a href="#contact" class="btn">Join Now</a>
+                </div>
+                <div class="pricing-plan">
+                    <div class="plan-name">Family</div>
+                    <div class="plan-price">₹1499<span>/month</span></div>
+                    <ul class="plan-features">
+                        <li>25 deliveries per month</li>
+                        <li>Up to 1kg package weight</li>
+                        <li>Within 5km radius</li>
+                        <li>Priority delivery</li>
+                        <li>Real-time tracking</li>
+                        <li>Dedicated support</li>
+                        <li>Schedule recurring deliveries</li>
+                    </ul>
+                    <a href="#contact" class="btn">Join Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our Customers Say</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        "The service has been a game-changer for our busy family. We get our groceries and essentials delivered on the same day without any hassle. Highly recommended!"
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-img"><img src="https://sasban.online/basab.jpg" alt=""></div>
+                        <div class="author-info">
+                            <h4>Priya Sharma</h4>
+                            <p>Working Parent, Ambicapatty</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        "I needed my medication urgently and Swift Silchar delivered it within an hour. The delivery person was professional and followed all safety protocols. Excellent service!"
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-img"><img src="https://sasban.online/sasban.jpg" alt=""></div>
+                        <div class="author-info">
+                            <h4>Rajdeep Roy</h4>
+                            <p>Retired Professor, Tarapur</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        "As a busy entrepreneur, this service saves me valuable time. The premium subscription is worth every rupee for the convenience it provides."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-img"><img src="https://sasban.online/basab.jpg" alt=""></div>
+                        <div class="author-info">
+                            <h4>Anindita Das</h4>
+                            <p>Business Owner, Shillongpatty</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta" id="contact">
+        <div class="container">
+            <h2>Ready for Same-Day Delivery?</h2>
+            <p>Join 1000+ premium households in Silchar who enjoy our exclusive delivery service.</p>
+            <a href="#" class="btn">Download App</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Swift Silchar</h3>
+                    <p>Premium same-day delivery service exclusively for Silchar's most discerning households.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li>Email: contact@swiftsilchar.com</li>
+                        <li>Phone: +91 7019492748</li>
+                        <li>Address: Central Road, Silchar, Assam</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="#">FB</a>
+                        <a href="#">IG</a>
+                        <a href="#">TW</a>
+                        <a href="#">WA</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2025 Swift Silchar. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
